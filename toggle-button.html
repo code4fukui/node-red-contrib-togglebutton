@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  RED.nodes.registerType("toggle-button", {
+    category: "function",
+    color: "#a6bbcf",
+    defaults: {
+        name: { value: "" },
+        buttonState: { value: true },
+    },
+    inputs: 0,
+    outputs: 1,
+    icon: "file.png",
+    label: function() {
+        return this.name || "toggle-button";
+    },
+    button: {
+      onclick: async function() {
+        const url = "/toggle-button/" + this.id;
+        await fetch(url, { method: "POST" });
+      },
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="toggle-button">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="toggle-button">
+  <p>A simple toggle button node (1 or 0)</p>
+</script>
